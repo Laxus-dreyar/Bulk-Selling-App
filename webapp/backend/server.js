@@ -44,10 +44,10 @@ userRoutes.route('/add').post(function(req, res) {
         });
 });
 
-// Getting a user by id
-userRoutes.route('/:id').get(function(req, res) {
-    let id = req.params.id;
-    User.findById(id, function(err, user) {
+// Check a user in database
+userRoutes.route('/check').post(function(req, res) {
+    let bod = req.body;
+    User.findOne(bod, function(err, user) {
         res.json(user);
     });
 });

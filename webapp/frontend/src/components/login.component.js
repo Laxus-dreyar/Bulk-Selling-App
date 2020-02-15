@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
+export default class Login extends Component {
     
     constructor(props) {
         super(props);
 
         this.state = {
             username: '',
-            email: '',
-            ty: 'vendor'
+            email: ''
         }
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeTy = this.onChangeTy.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
     
@@ -26,26 +24,20 @@ export default class CreateUser extends Component {
         this.setState({ email: event.target.value });
     }
 
-    onChangeTy(event) {
-        this.setState({ ty: event.target.value });
-    }
-
     onSubmit(e) {
         e.preventDefault();
 
         const newUser = {
             username: this.state.username,
-            email: this.state.email,
-            ty: this.state.ty
+            email: this.state.email
         }
 
-        axios.post('http://localhost:4000/add', newUser)
-             .then(res => console.log(res.data));
+        axios.post('http://localhost:4000/check', newUser)
+             .then(res => {this.props.history.push('/login/vendor')});
 
         this.setState({
             username: '',
-            email: '',
-            ty: 'vendor'
+            email: ''
         });
     }
 
@@ -70,14 +62,7 @@ export default class CreateUser extends Component {
                                />  
                     </div>
                     <div className="form-group">
-                        <label>Type of User:</label>
-                        <select type="text" value={this.state.ty} onChange={this.onChangeTy}>
-                            <option value="vendor">Vendor</option>
-                            <option value="customer">Customer</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Create User" className="btn btn-primary"/>
+                        <input type="submit" value="Login" className="btn btn-primary"/>
                     </div>
                 </form>
             </div>
