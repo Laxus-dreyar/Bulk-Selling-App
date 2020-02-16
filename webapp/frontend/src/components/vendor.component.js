@@ -7,16 +7,22 @@ export default class Vendor extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-            username: ''
+            username: this.props.location.user
         }
 	}
 
 	showProducts = () => {
-		this.props.history.push("/login/vendor/products");
+		this.props.history.push({
+			pathname:'/login/vendor/products',
+			user: this.state.username
+		});
 	}
   
 	createProduct = () => {
-		this.props.history.push('/login/vendor/create');
+		this.props.history.push({
+			pathname:'/login/vendor/create',
+			user: this.state.username
+		});
 	}
 
 	render() {
@@ -33,6 +39,9 @@ export default class Vendor extends Component{
 				</li>
 				</ul>
 			</div>
+			<div>
+				{this.state.username}
+            </div>
 			</nav>
 			<br/>
 		</div>

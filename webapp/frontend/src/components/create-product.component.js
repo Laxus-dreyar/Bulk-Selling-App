@@ -7,21 +7,16 @@ export default class CreateProduct extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            username: this.props.location.user,
             price: 0,
             name: '',
             quantity:0
         }
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    }
-    
-    onChangeUsername(event) {
-        this.setState({ username: event.target.value });
     }
 
     onChangePrice(event) {
@@ -38,7 +33,6 @@ export default class CreateProduct extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         const newUser = {
             username: this.state.username,
             price: this.state.price,
@@ -50,7 +44,6 @@ export default class CreateProduct extends Component {
              .then(res => console.log(res.data));
 
         this.setState({
-            username: '',
             price: 0,
             name: '',
             quantity:0
@@ -59,16 +52,8 @@ export default class CreateProduct extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.username}
-                               onChange={this.onChangeUsername}
-                               />
-                    </div>
                     <div className="form-group">
                         <label>Price: </label>
                         <input type="text" 
@@ -97,6 +82,9 @@ export default class CreateProduct extends Component {
                         <input type="submit" value="Create Profuct" className="btn btn-primary"/>
                     </div>
                 </form>
+                <div>
+                    {this.state.username}
+                </div>
             </div>
         )
     }
