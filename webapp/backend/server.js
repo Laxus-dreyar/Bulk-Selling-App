@@ -33,9 +33,22 @@ userRoutes.route('/').get(function(req, res) {
     });
 });
 
+//search products by specific username
 userRoutes.route('/login/vendor/products').post(function(req, res) {
     let pro = req.body.username;
     Product.find({username:pro},function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(products);
+        }
+    });
+});
+
+//search products by specific name
+userRoutes.route('/login/customer/search-product/result').post(function(req, res) {
+    let pro = req.body.name;
+    Product.find({name:pro},function(err, products) {
         if (err) {
             console.log(err);
         } else {
@@ -61,7 +74,7 @@ userRoutes.route('/addproduct').post(function(req, res) {
     let product = new Product(req.body);
     product.save()
         .then(product => {
-            res.status(200).json({'Product': 'User added successfully'});
+            res.status(200).json({'Product': 'Product added successfully'});
         })
         .catch(err => {
             res.status(400).send('Error');

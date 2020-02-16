@@ -9,6 +9,8 @@ import Vendor from './components/vendor.component'
 import ProductList from './components/product-list.component'
 import CreateProduct from './components/create-product.component'
 import Customer from './components/customer.component'
+import SearchProduct from './components/search-product.component'
+import SearchProductResult from './components/search-results-customer.component'
 
 function App() {
   return (
@@ -39,7 +41,8 @@ function App() {
         <Route path="/login/vendor/products" exact component={ProductList}/>
         <Route path="/login/vendor/create" exact component={CreateProduct}/>
         <Route path="/login/customer" exact component={Customer}/>
-        
+        <Route path="/login/customer/search-product" exact component={SearchProduct}/>
+        <Route path="/login/customer/search-product/result" exact component={SearchProductResult}/>
       </div>
     </Router>
   );

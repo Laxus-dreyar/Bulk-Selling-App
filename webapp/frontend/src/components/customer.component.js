@@ -11,9 +11,9 @@ export default class Customer extends Component{
         }
 	}
 
-	showProducts = () => {
+	searchProducts = () => {
 		this.props.history.push({
-			pathname:'/login/vendor/products',
+			pathname:'/login/customer/search-product',
 			user: this.state.username
 		});
 	}
@@ -32,10 +32,10 @@ export default class Customer extends Component{
 			<div className="collapse navbar-collapse">
 				<ul className="navbar-nav mr-auto">
 				<li className="navbar-item">
-					<button type="button" onClick={this.showProducts}>Show Products</button>
+					<button type="button" onClick={this.searchProducts}>Search Products</button>
 				</li>
 				<li className="navbar-item">
-					<button type="button" onClick={this.createProduct}>Create Products</button>
+					<button type="button" onClick={this.viewProduct}>View Products</button>
 				</li>
 				</ul>
 			</div>
