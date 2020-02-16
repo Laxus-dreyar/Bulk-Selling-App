@@ -5,11 +5,22 @@ export default class ProdList extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {products: []}
+        this.state = {
+            products: [],
+            username: this.props.location.user
+        }
+        
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/login/vendor/products')
+        const newProduct = {
+            username: this.state.username,
+            name: '',
+            Price: 0,
+            Quantity: 0
+        };
+        console.log(newProduct.username);
+        axios.post('http://localhost:4000/login/vendor/products',newProduct)
              .then(response => {
                  this.setState({products: response.data});
              })

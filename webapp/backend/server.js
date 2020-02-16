@@ -33,8 +33,9 @@ userRoutes.route('/').get(function(req, res) {
     });
 });
 
-userRoutes.route('/login/vendor/products').get(function(req, res) {
-    Product.find(function(err, products) {
+userRoutes.route('/login/vendor/products').post(function(req, res) {
+    let pro = req.body.username;
+    Product.find({username:pro},function(err, products) {
         if (err) {
             console.log(err);
         } else {
