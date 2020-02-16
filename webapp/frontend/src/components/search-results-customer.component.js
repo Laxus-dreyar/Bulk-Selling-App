@@ -12,6 +12,15 @@ export default class ProdList extends Component {
         }
     }
 
+    orderProduct = (username) => {
+        this.props.history.push({
+            pathname:'/login/customer/search-product/result/order',
+            user: this.state.username,
+            name: this.state.name,
+            vendorname: username
+        });
+    }
+
     componentDidMount() {
         const newProduct = {
             username: '',
@@ -39,6 +48,9 @@ export default class ProdList extends Component {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Quantity Ordered till now</th>
+                            <th>Status of Product</th>
+                            <th>Order now</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +62,9 @@ export default class ProdList extends Component {
                                     <td>{currentUser.name}</td>
                                     <td>{currentUser.price}</td>
                                     <td>{currentUser.quantity}</td>
+                                    <td>{currentUser.count}</td>
+                                    <td>{currentUser.status}</td>
+                                    <td><button type="button" onClick={() => this.orderProduct(currentUser.username)}>Order</button></td>
                                 </tr>
                             )
                         })

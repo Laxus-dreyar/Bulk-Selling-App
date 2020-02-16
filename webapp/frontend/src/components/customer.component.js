@@ -18,7 +18,7 @@ export default class Customer extends Component{
 		});
 	}
   
-	createProduct = () => {
+	viewProduct = () => {
 		this.props.history.push({
 			pathname:'/login/vendor/create',
 			user: this.state.username

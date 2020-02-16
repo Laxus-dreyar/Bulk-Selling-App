@@ -38,6 +38,8 @@ export default class ProdList extends Component {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Quantity Ordered till now</th>
+                            <th>Status of Product</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +51,8 @@ export default class ProdList extends Component {
                                     <td>{currentUser.name}</td>
                                     <td>{currentUser.price}</td>
                                     <td>{currentUser.quantity}</td>
+                                    <td>{currentUser.status}</td>
+                                    <td>{currentUser.count}</td>
                                 </tr>
                             )
                         })

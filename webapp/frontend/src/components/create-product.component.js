@@ -10,7 +10,9 @@ export default class CreateProduct extends Component {
             username: this.props.location.user,
             price: 0,
             name: '',
-            quantity:0
+            status: 'waiting',
+            quantity:0,
+            count:0
         }
 
         this.onChangePrice = this.onChangePrice.bind(this);
@@ -37,7 +39,9 @@ export default class CreateProduct extends Component {
             username: this.state.username,
             price: this.state.price,
             quantity: this.state.quantity,
-            name: this.state.name
+            name: this.state.name,
+            status: this.state.status,
+            count: this.state.count
         }
 
         axios.post('http://localhost:4000/addproduct', newUser)
@@ -46,7 +50,9 @@ export default class CreateProduct extends Component {
         this.setState({
             price: 0,
             name: '',
-            quantity:0
+            status: 'waiting',
+            quantity:0,
+            count:0
         });
     }
 
@@ -79,7 +85,7 @@ export default class CreateProduct extends Component {
                                />  
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Profuct" className="btn btn-primary"/>
+                        <input type="submit" value="Create Product" className="btn btn-primary"/>
                     </div>
                 </form>
                 <div>
