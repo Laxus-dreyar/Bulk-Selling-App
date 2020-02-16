@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
+export default class CreateProduct extends Component {
     
     constructor(props) {
         super(props);
 
         this.state = {
             username: '',
-            email: '',
-            ty: 'vendor'
+            price: 0,
+            name: '',
+            quantity:0
         }
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeTy = this.onChangeTy.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
     
@@ -22,12 +24,16 @@ export default class CreateUser extends Component {
         this.setState({ username: event.target.value });
     }
 
-    onChangeEmail(event) {
-        this.setState({ email: event.target.value });
+    onChangePrice(event) {
+        this.setState({ price: event.target.value });
     }
 
-    onChangeTy(event) {
-        this.setState({ ty: event.target.value });
+    onChangeQuantity(event) {
+        this.setState({ quantity: event.target.value });
+    }
+
+    onChangeName(event) {
+        this.setState({ name: event.target.value });
     }
 
     onSubmit(e) {
@@ -35,17 +41,19 @@ export default class CreateUser extends Component {
 
         const newUser = {
             username: this.state.username,
-            email: this.state.email,
-            ty: this.state.ty
+            price: this.state.price,
+            quantity: this.state.quantity,
+            name: this.state.name
         }
 
-        axios.post('http://localhost:4000/add', newUser)
+        axios.post('http://localhost:4000/addproduct', newUser)
              .then(res => console.log(res.data));
 
         this.setState({
             username: '',
-            email: '',
-            ty: 'vendor'
+            price: 0,
+            name: '',
+            quantity:0
         });
     }
 
@@ -62,22 +70,31 @@ export default class CreateUser extends Component {
                                />
                     </div>
                     <div className="form-group">
-                        <label>Email: </label>
+                        <label>Price: </label>
                         <input type="text" 
                                className="form-control" 
-                               value={this.state.email}
-                               onChange={this.onChangeEmail}
+                               value={this.state.price}
+                               onChange={this.onChangePrice}
                                />  
                     </div>
                     <div className="form-group">
-                        <label>Type of User:</label>
-                        <select type="text" value={this.state.ty} onChange={this.onChangeTy}>
-                            <option value="vendor">Vendor</option>
-                            <option value="customer">Customer</option>
-                        </select>
+                        <label>quantity: </label>
+                        <input type="text" 
+                               className="form-control" 
+                               value={this.state.quantity}
+                               onChange={this.onChangeQuantity}
+                               />  
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create User" className="btn btn-primary"/>
+                        <label>Name: </label>
+                        <input type="text" 
+                               className="form-control" 
+                               value={this.state.name}
+                               onChange={this.onChangeName}
+                               />  
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Create Profuct" className="btn btn-primary"/>
                     </div>
                 </form>
             </div>

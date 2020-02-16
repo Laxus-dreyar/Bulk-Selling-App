@@ -1,36 +1,41 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"
+import React, {Component} from 'react';
+import axios from 'axios';
+import { render } from '@testing-library/react';
 
-import ProductList from './product-list.component'
-import CreateProduct from './create-product.component'
+export default class Vendor extends Component{
+  
+	constructor(props) {
+		super(props);
+		this.state = {
+            username: ''
+        }
+	}
 
+	showProducts = () => {
+		this.props.history.push("/login/vendor/products");
+	}
+  
+	createProduct = () => {
+		this.props.history.push('/login/vendor/create');
+	}
 
-function Vendor() {
-  return (
-    <Router>
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link to="/login/vendor/products" className="navbar-brand">Vendor</Link>
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
-                <Link to="/login/vendor/products" className="nav-link">Products</Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/login/vendor/create" className="nav-link">Create Product</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <br/>
-
-        <Route path="/login/vendor/products" exact component={ProductList}/>
-        <Route path="/login/vendor/create" exact component={CreateProduct}/>
-        
-      </div>
-    </Router>
-  );
+	render() {
+		return (
+		<div className="container">
+			<nav className="navbar navbar-expand-lg navbar-light bg-light">
+			<div className="collapse navbar-collapse">
+				<ul className="navbar-nav mr-auto">
+				<li className="navbar-item">
+					<button type="button" onClick={this.showProducts}>Show Products</button>
+				</li>
+				<li className="navbar-item">
+					<button type="button" onClick={this.createProduct}>Create Products</button>
+				</li>
+				</ul>
+			</div>
+			</nav>
+			<br/>
+		</div>
+		)
+	}
 }
-
-export default Vendor;

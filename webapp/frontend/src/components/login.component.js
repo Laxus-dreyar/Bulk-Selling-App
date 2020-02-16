@@ -33,7 +33,14 @@ export default class Login extends Component {
         }
 
         axios.post('http://localhost:4000/check', newUser)
-             .then(res => {this.props.history.push('/login/vendor')});
+             .then(res => {
+                    if(res.data.ty === "vendor") {
+                        this.props.history.push('/login/vendor');
+                    }
+                    else if(res.data.ty === "customer") {
+                        alert("wow");
+                    }
+                });
 
         this.setState({
             username: '',

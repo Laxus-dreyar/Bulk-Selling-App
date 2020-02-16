@@ -6,6 +6,9 @@ import UsersList from './components/users-list.component'
 import CreateUser from './components/create-user.component'
 import Login from './components/login.component'
 import Vendor from './components/vendor.component'
+import ProductList from './components/product-list.component'
+import CreateProduct from './components/create-product.component'
+import Customer from './components/customer.component'
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
         <Route path="/create" exact component={CreateUser}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/login/vendor" exact component={Vendor}/>
+        <Route path="/login/vendor/products" exact component={ProductList}/>
+        <Route path="/login/vendor/create" exact component={CreateProduct}/>
+        <Route path="/login/customer" exact component={Customer}/>
         
       </div>
     </Router>

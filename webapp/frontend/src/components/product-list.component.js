@@ -5,13 +5,13 @@ export default class ProdList extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {users: []}
+        this.state = {products: []}
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/')
+        axios.get('http://localhost:4000/login/vendor/products')
              .then(response => {
-                 this.setState({users: response.data});
+                 this.setState({products: response.data});
              })
              .catch(function(error) {
                  console.log(error);
@@ -25,18 +25,20 @@ export default class ProdList extends Component {
                     <thead>
                         <tr>
                             <th>Username</th>
-                            <th>Email</th>
-                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
                     { 
-                        this.state.users.map((currentUser, i) => {
+                        this.state.products.map((currentUser, i) => {
                             return (
                                 <tr>
                                     <td>{currentUser.username}</td>
-                                    <td>{currentUser.email}</td>
-                                    <td>{currentUser.ty}</td>
+                                    <td>{currentUser.name}</td>
+                                    <td>{currentUser.price}</td>
+                                    <td>{currentUser.quantity}</td>
                                 </tr>
                             )
                         })

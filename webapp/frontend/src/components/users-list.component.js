@@ -25,7 +25,7 @@ export default class UsersList extends Component {
                     <thead>
                         <tr>
                             <th>Username</th>
-                            <th>Email</th>
+                            <th>Name</th>
                             <th>Type</th>
                         </tr>
                     </thead>
