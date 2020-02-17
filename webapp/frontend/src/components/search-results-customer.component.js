@@ -49,7 +49,7 @@ export default class ProdList extends Component {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Quantity Ordered till now</th>
+                            <th>Quantity Left to order</th>
                             <th>Status of Product</th>
                             <th>Order now</th>
                         </tr>

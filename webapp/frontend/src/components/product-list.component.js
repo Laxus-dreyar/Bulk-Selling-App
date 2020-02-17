@@ -38,7 +38,7 @@ export default class ProdList extends Component {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Status of Product</th>
-                            <th>Quantity Ordered till now</th>
+                            <th>Quantity Left to Order</th>
                         </tr>
                     </thead>
                     <tbody>

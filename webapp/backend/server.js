@@ -49,11 +49,11 @@ userRoutes.route('/login/vendor/products').post(function(req, res) {
 //search ordered products by specific username
 userRoutes.route('/login/customer/products').post(function(req, res) {
     let pro = req.body.username;
-    Order.find({username:pro},function(err, products) {
+    Order.find({username:pro},function(err, orders) {
         if (err) {
             console.log(err);
         } else {
-            res.json(products);
+            res.json(orders);
         }
     });
 });
@@ -117,6 +117,22 @@ userRoutes.route('/updateorder').put(function(req, res) {
             console.log("not updated");
         } else {
             res.json(products);
+        }
+    })
+});
+
+//Update order in orders db
+userRoutes.route('/updateorderdb').put(function(req, res) {
+    let vendorname1 = req.body.vendorname;
+    let productname1 = req.body.productname;
+    let quantity = req.body.count;
+    let status = req.body.status;
+    console.log(status);
+    Order.updateMany({vendorname: `${vendorname1}`,productname: `${productname1}`},{count: `${quantity}`,status: `${status}`},function(err,orders){
+        if (err) {
+            console.log("not updated");
+        } else {
+            res.json(orders);
         }
     })
 });

@@ -12,7 +12,7 @@ export default class OrderProduct extends Component {
             vendorname: this.props.location.vendorname,
             searchvalue: 0,
             count: this.props.location.count,
-            quantity: this.location.quantity,
+            quantity: this.props.location.quantity,
             status: 'waiting'
         }
 
@@ -26,15 +26,18 @@ export default class OrderProduct extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+
+        if(this.state.count - this.state.searchvalue <=0){
+            this.state.status = 'Ready'
+        }
+
         const newOrder = {
             username: this.state.username,
             vendorname: this.state.vendorname,
             quantity: this.state.searchvalue,
-            productname: this.state.productname
-        }
-
-        if(this.state.count - this.state.searchvalue <=0){
-            this.state.status = 'Ready'
+            productname: this.state.productname,
+            count: this.state.count - this.state.searchvalue,
+            status: this.state.status
         }
 
         const upProduct = {
@@ -46,15 +49,22 @@ export default class OrderProduct extends Component {
         }
 
         console.log(upProduct.count);
+        console.log(upProduct.status)
         axios.post('http://localhost:4000/addorder', newOrder)
              .then(res => console.log(res.data));
         
+        
+        axios.put('http://localhost:4000/updateorderdb',newOrder)
+        .then(res => console.log(res.data));
+        
         axios.put('http://localhost:4000/updateorder',upProduct)
+            .then(res => console.log(res.data));
+        
+        alert("Order placed");
+
         this.setState({
             searchvalue: 0
         });
-
-        alert("Order placed");
 
 		this.props.history.push({
 			pathname:'/login/customer',
