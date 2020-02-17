@@ -13,6 +13,7 @@ import SearchProduct from './components/search-product.component'
 import SearchProductResult from './components/search-results-customer.component'
 import OrderProduct from './components/ordering.component'
 import OrderedProductList from './components/ordered-product-list.component'
+import WaitProductList from './components/waiting-product-list.component'
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/login/customer/search-product/result" exact component={SearchProductResult}/>
         <Route path="/login/customer/search-product/result/order" exact component={OrderProduct}/>
         <Route path="/login/customer/products" exact component={OrderedProductList}/>
+        <Route path="/login/vendor/waitproducts" exact component={WaitProductList}/>
 
       </div>
     </Router>

@@ -11,6 +11,13 @@ export default class Vendor extends Component{
         }
 	}
 
+	showWaitProducts = () => {
+		this.props.history.push({
+			pathname:'/login/vendor/waitproducts',
+			user: this.state.username
+		});
+	}
+	
 	showProducts = () => {
 		this.props.history.push({
 			pathname:'/login/vendor/products',
@@ -33,6 +40,9 @@ export default class Vendor extends Component{
 				<ul className="navbar-nav mr-auto">
 				<li className="navbar-item">
 					<button type="button" onClick={this.showProducts}>Show Products</button>
+				</li>
+				<li className="navbar-item">
+					<button type="button" onClick={this.showWaitProducts}>Show Waiting Products</button>
 				</li>
 				<li className="navbar-item">
 					<button type="button" onClick={this.createProduct}>Create Products</button>

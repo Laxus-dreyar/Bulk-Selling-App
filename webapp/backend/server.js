@@ -46,6 +46,20 @@ userRoutes.route('/login/vendor/products').post(function(req, res) {
     });
 });
 
+//search waiting products
+userRoutes.route('/login/vendor/productswait').post(function(req, res) {
+    let pro = req.body.username;
+    let stat = req.body.status;
+    console.log(stat);
+    Product.find({username:pro ,status:stat},function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(products);
+        }
+    });
+});
+
 //search ordered products by specific username
 userRoutes.route('/login/customer/products').post(function(req, res) {
     let pro = req.body.username;

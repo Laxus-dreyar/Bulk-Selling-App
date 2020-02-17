@@ -16,9 +16,10 @@ export default class ProdList extends Component {
             username: this.state.username,
             name: '',
             Price: 0,
+            status: 'waiting',
             Quantity: 0
         };
-        axios.post('http://localhost:4000/login/vendor/products',newProduct)
+        axios.post('http://localhost:4000/login/vendor/productswait',newProduct)
              .then(response => {
                  this.setState({products: response.data});
              })
@@ -32,7 +33,7 @@ export default class ProdList extends Component {
 			pathname:'/login/vendor/waitproducts',
 			user: this.state.username
 		});
-    }
+	}
     
     showProducts = () => {
 		this.props.history.push({

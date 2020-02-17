@@ -32,6 +32,20 @@ export default class CreateProduct extends Component {
     onChangeName(event) {
         this.setState({ name: event.target.value });
     }
+    
+    showProducts = () => {
+		this.props.history.push({
+			pathname:'/login/vendor/products',
+			user: this.state.username
+		});
+	}
+  
+	createProduct = () => {
+		this.props.history.push({
+			pathname:'/login/vendor/create',
+			user: this.state.username
+		});
+    }
 
     onSubmit(e) {
         e.preventDefault();
@@ -58,38 +72,55 @@ export default class CreateProduct extends Component {
 
     render() {
         return (
-            <div className="container">
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Price: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.price}
-                               onChange={this.onChangePrice}
-                               />  
+            <div>
+                <div className="container">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="collapse navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.showProducts}>Show All Products</button>
+                        </li>
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.createProduct}>Create Products</button>
+                        </li>
+                        </ul>
                     </div>
-                    <div className="form-group">
-                        <label>quantity: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.quantity}
-                               onChange={this.onChangeQuantity}
-                               />  
+                    <div>
+                        {this.state.username}
                     </div>
-                    <div className="form-group">
-                        <label>Name: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.name}
-                               onChange={this.onChangeName}
-                               />  
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Create Product" className="btn btn-primary"/>
-                    </div>
-                </form>
-                <div>
-                    {this.state.username}
+                    </nav>
+                    <br/>
+                </div>
+                <div className="container">
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label>Price: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.price}
+                                onChange={this.onChangePrice}
+                                />  
+                        </div>
+                        <div className="form-group">
+                            <label>quantity: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.quantity}
+                                onChange={this.onChangeQuantity}
+                                />  
+                        </div>
+                        <div className="form-group">
+                            <label>Name: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.name}
+                                onChange={this.onChangeName}
+                                />  
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Create Product" className="btn btn-primary"/>
+                        </div>
+                    </form>
                 </div>
             </div>
         )

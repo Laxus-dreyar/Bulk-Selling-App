@@ -55,7 +55,7 @@ export default class OrderProduct extends Component {
         
         
         axios.put('http://localhost:4000/updateorderdb',newOrder)
-        .then(res => console.log(res.data));
+            .then(res => console.log(res.data));
         
         axios.put('http://localhost:4000/updateorder',upProduct)
             .then(res => console.log(res.data));
