@@ -34,16 +34,21 @@ export default class Login extends Component {
 
         axios.post('http://localhost:4000/check', newUser)
              .then(res => {
-                    if(res.data.ty === "vendor")
-                        this.props.history.push({
-                            pathname:'/login/vendor',
-                            user: newUser.username
-                        });
-                    else if(res.data.ty === "customer")
-                        this.props.history.push({
-                            pathname:'/login/customer',
-                            user: newUser.username
-                        });
+                    if(!res.data){
+                        alert("INVALID CREDENTIALS");
+                    }
+                    else{
+                        if(res.data.ty === "vendor")
+                            this.props.history.push({
+                                pathname:'/login/vendor',
+                                user: newUser.username
+                            });
+                        else if(res.data.ty === "customer")
+                            this.props.history.push({
+                                pathname:'/login/customer',
+                                user: newUser.username
+                            });
+                    }
                 });
 
         this.setState({

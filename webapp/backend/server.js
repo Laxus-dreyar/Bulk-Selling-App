@@ -9,6 +9,7 @@ const userRoutes = express.Router();
 
 let User = require('./models/user');
 let Product = require('./models/product');
+let Order = require('./models/orders');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -45,6 +46,18 @@ userRoutes.route('/login/vendor/products').post(function(req, res) {
     });
 });
 
+//search ordered products by specific username
+userRoutes.route('/login/customer/products').post(function(req, res) {
+    let pro = req.body.username;
+    Order.find({username:pro},function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(products);
+        }
+    });
+});
+
 //search products by specific name
 userRoutes.route('/login/customer/search-product/result').post(function(req, res) {
     let pro = req.body.name;
@@ -69,7 +82,7 @@ userRoutes.route('/add').post(function(req, res) {
         });
 });
 
-// Adding a new user
+// Adding a new product
 userRoutes.route('/addproduct').post(function(req, res) {
     let product = new Product(req.body);
     product.save()
@@ -79,6 +92,33 @@ userRoutes.route('/addproduct').post(function(req, res) {
         .catch(err => {
             res.status(400).send('Error');
         });
+});
+
+// Adding a new order
+userRoutes.route('/addorder').post(function(req, res) {
+    let order = new Order(req.body);
+    order.save()
+        .then(product => {
+            res.status(200).json({'Order': 'Order added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('Error');
+        });
+});
+
+//Update order in database based on quantity
+userRoutes.route('/updateorder').put(function(req, res) {
+    let vendorname = req.body.vendorname;
+    let productname = req.body.productname;
+    let quantity = req.body.count;
+    let status = req.body.status;
+    Product.updateOne({username: `${vendorname}`,name: `${productname}`},{count: `${quantity}`,status: `${status}`},function(err,products){
+        if (err) {
+            console.log("not updated");
+        } else {
+            res.json(products);
+        }
+    })
 });
 
 // Check a user in database

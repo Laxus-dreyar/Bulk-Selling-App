@@ -20,7 +20,7 @@ export default class Customer extends Component{
   
 	viewProduct = () => {
 		this.props.history.push({
-			pathname:'/login/vendor/create',
+			pathname:'/login/customer/products',
 			user: this.state.username
 		});
 	}

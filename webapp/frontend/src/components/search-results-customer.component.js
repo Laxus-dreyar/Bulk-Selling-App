@@ -12,12 +12,14 @@ export default class ProdList extends Component {
         }
     }
 
-    orderProduct = (username) => {
+    orderProduct = (username,quantity1,count1) => {
         this.props.history.push({
             pathname:'/login/customer/search-product/result/order',
             user: this.state.username,
             name: this.state.name,
-            vendorname: username
+            vendorname: username,
+            quantity: quantity1,
+            count: count1
         });
     }
 
@@ -28,7 +30,6 @@ export default class ProdList extends Component {
             Price: 0,
             Quantity: 0
         };
-        console.log(newProduct.username);
         axios.post('http://localhost:4000/login/customer/search-product/result',newProduct)
              .then(response => {
                  this.setState({products: response.data});
@@ -64,7 +65,7 @@ export default class ProdList extends Component {
                                     <td>{currentUser.quantity}</td>
                                     <td>{currentUser.count}</td>
                                     <td>{currentUser.status}</td>
-                                    <td><button type="button" onClick={() => this.orderProduct(currentUser.username)}>Order</button></td>
+                                    <td><button type="button" onClick={() => this.orderProduct(currentUser.username,currentUser.quantity,currentUser.count)}>Order</button></td>
                                 </tr>
                             )
                         })

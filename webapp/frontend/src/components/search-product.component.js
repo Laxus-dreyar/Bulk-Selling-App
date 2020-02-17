@@ -21,7 +21,6 @@ export default class SearchProduct extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        console.log("searching")
         this.props.history.push({
             pathname:'/login/customer/search-product/result',
             user: this.state.username,

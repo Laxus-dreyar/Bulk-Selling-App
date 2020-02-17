@@ -12,6 +12,7 @@ import Customer from './components/customer.component'
 import SearchProduct from './components/search-product.component'
 import SearchProductResult from './components/search-results-customer.component'
 import OrderProduct from './components/ordering.component'
+import OrderedProductList from './components/ordered-product-list.component'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         </nav>
 
         <br/>
+        
         <Route path="/" exact component={UsersList}/>
         <Route path="/create" exact component={CreateUser}/>
         <Route path="/login" exact component={Login}/>
@@ -45,7 +47,8 @@ function App() {
         <Route path="/login/customer/search-product" exact component={SearchProduct}/>
         <Route path="/login/customer/search-product/result" exact component={SearchProductResult}/>
         <Route path="/login/customer/search-product/result/order" exact component={OrderProduct}/>
-        
+        <Route path="/login/customer/products" exact component={OrderedProductList}/>
+
       </div>
     </Router>
   );

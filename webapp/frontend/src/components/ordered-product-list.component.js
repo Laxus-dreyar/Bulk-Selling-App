@@ -18,7 +18,8 @@ export default class ProdList extends Component {
             Price: 0,
             Quantity: 0
         };
-        axios.post('http://localhost:4000/login/vendor/products',newProduct)
+
+        axios.post('http://localhost:4000/login/customer/products',newProduct)
              .then(response => {
                  this.setState({products: response.data});
              })
@@ -33,12 +34,9 @@ export default class ProdList extends Component {
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th>Username</th>
+                            <th>Vendor name</th>
                             <th>Name</th>
-                            <th>Price</th>
                             <th>Quantity</th>
-                            <th>Status of Product</th>
-                            <th>Quantity Ordered till now</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,12 +44,9 @@ export default class ProdList extends Component {
                         this.state.products.map((currentUser, i) => {
                             return (
                                 <tr>
-                                    <td>{currentUser.username}</td>
-                                    <td>{currentUser.name}</td>
-                                    <td>{currentUser.price}</td>
+                                    <td>{currentUser.vendorname}</td>
+                                    <td>{currentUser.productname}</td>
                                     <td>{currentUser.quantity}</td>
-                                    <td>{currentUser.status}</td>
-                                    <td>{currentUser.count}</td>
                                 </tr>
                             )
                         })
