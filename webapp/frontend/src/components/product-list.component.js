@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class ProdList extends Component {
+export default class ProductList extends Component {
     
     constructor(props) {
         super(props);
@@ -34,6 +34,27 @@ export default class ProdList extends Component {
 		});
     }
     
+    showReadyProducts = () => {
+		this.props.history.push({
+			pathname:'/login/vendor/readyproducts',
+			user: this.state.username
+		});
+	}
+
+	showCanceledProducts = () => {
+		this.props.history.push({
+			pathname:'/login/vendor/canceledproducts',
+			user: this.state.username
+		});
+	}
+
+	showDispatchedProducts = () => {
+		this.props.history.push({
+			pathname:'/login/vendor/dispatchedproducts',
+			user: this.state.username
+		});
+    }
+    
     showProducts = () => {
 		this.props.history.push({
 			pathname:'/login/vendor/products',
@@ -60,6 +81,15 @@ export default class ProdList extends Component {
                         </li>
                         <li className="navbar-item">
                             <button type="button" onClick={this.showWaitProducts}>Show Waiting Products</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={this.showReadyProducts}>Show Ready Products</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={this.showDispatchedProducts}>Show Dispatched Products</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={this.showCanceledProducts}>Show Canceled Products</button>
                         </li>
                         <li className="navbar-item">
                             <button type="button" onClick={this.createProduct}>Create Products</button>

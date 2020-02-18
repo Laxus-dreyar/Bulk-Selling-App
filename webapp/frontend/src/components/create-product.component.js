@@ -68,6 +68,7 @@ export default class CreateProduct extends Component {
             quantity:0,
             count:0
         });
+        alert("Product added");
     }
 
     render() {
@@ -94,6 +95,14 @@ export default class CreateProduct extends Component {
                 <div className="container">
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
+                            <label>Name: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.name}
+                                onChange={this.onChangeName}
+                                />  
+                        </div>
+                        <div className="form-group">
                             <label>Price: </label>
                             <input type="text" 
                                 className="form-control" 
@@ -107,14 +116,6 @@ export default class CreateProduct extends Component {
                                 className="form-control" 
                                 value={this.state.quantity}
                                 onChange={this.onChangeQuantity}
-                                />  
-                        </div>
-                        <div className="form-group">
-                            <label>Name: </label>
-                            <input type="text" 
-                                className="form-control" 
-                                value={this.state.name}
-                                onChange={this.onChangeName}
                                 />  
                         </div>
                         <div className="form-group">

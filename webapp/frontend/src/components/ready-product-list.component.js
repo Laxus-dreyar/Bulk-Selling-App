@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class WaitProductList extends Component {
+export default class ReadyProductList extends Component {
     
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ export default class WaitProductList extends Component {
             username: this.state.username,
             name: '',
             Price: 0,
-            status: 'waiting',
+            status: 'Ready',
             Quantity: 0
         };
         axios.post('http://localhost:4000/login/vendor/productswait',newProduct)
@@ -70,19 +70,19 @@ export default class WaitProductList extends Component {
 		});
     }
     
-    cancelProduct = (name,count1) => {
+    dispatchProduct = (name,count1) => {
         const upProduct = {
             vendorname: this.state.username,
             productname: name,
             count: count1,
-            status: 'canceled',
+            status: 'dispatched',
         }
         axios.put('http://localhost:4000/updateorderdb',upProduct)
             .then(res => console.log(res.data));
         
         axios.put('http://localhost:4000/updateorder',upProduct)
             .then(res => console.log(res.data));
-        alert("canceled");
+        alert("dispatched");
         this.props.history.push({
 			pathname:'/login/vendor',
 			user: this.state.username
@@ -145,7 +145,7 @@ export default class WaitProductList extends Component {
                                         <td>{currentUser.quantity}</td>
                                         <td>{currentUser.status}</td>
                                         <td>{currentUser.count}</td>
-                                        <td><button type="button" onClick={() => this.cancelProduct(currentUser.name,currentUser.count)}>Cancel</button></td>
+                                        <td><button type="button" onClick={() => this.dispatchProduct(currentUser.name,currentUser.count)}>Dispatch</button></td>
                                     </tr>
                                 )
                             })
