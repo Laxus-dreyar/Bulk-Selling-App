@@ -132,6 +132,7 @@ export default class WaitProductList extends Component {
                                 <th>Quantity</th>
                                 <th>Status of Product</th>
                                 <th>Quantity Left to Order</th>
+                                <th>Rating</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,6 +146,7 @@ export default class WaitProductList extends Component {
                                         <td>{currentUser.quantity}</td>
                                         <td>{currentUser.status}</td>
                                         <td>{currentUser.count}</td>
+                                        <td>{currentUser.rating}</td>
                                         <td><button type="button" onClick={() => this.cancelProduct(currentUser.name,currentUser.count)}>Cancel</button></td>
                                     </tr>
                                 )

@@ -39,6 +39,17 @@ export default class ProdList extends Component {
         });
     }
 
+    rateVendor = (username,quantity1,count1,productname) => {
+        this.props.history.push({
+            pathname:'/login/customer/products-rate',
+            user: this.state.username,
+            name: productname,
+            vendorname: username,
+            quantity: quantity1,
+            count: count1
+        });
+    }
+
     render() {
         return (
             <div>
@@ -63,6 +74,7 @@ export default class ProdList extends Component {
                                     <td>{currentUser.count}</td>
                                     <td>{currentUser.status}</td>
                                     <td><button type="button" onClick={() => this.editProduct(currentUser.vendorname,currentUser.quantity,currentUser.count,currentUser.productname)}>Edit</button></td>
+                                    <td><button type="button" onClick={() => this.rateVendor(currentUser.vendorname,currentUser.quantity,currentUser.count,currentUser.productname)}>Rate</button></td>
                                 </tr>
                             )
                         })

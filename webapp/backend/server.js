@@ -60,6 +60,20 @@ userRoutes.route('/login/vendor/productswait').post(function(req, res) {
     });
 });
 
+//search rating products
+userRoutes.route('/login/customer/products-rating').post(function(req, res) {
+    let pro = req.body.vendorname;
+    let pname = req.body.productname;
+    console.log(pname);
+    Product.findOne({username:pro ,name:pname},function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(products);
+        }
+    });
+});
+
 //search ordered products by specific username
 userRoutes.route('/login/customer/products').post(function(req, res) {
     let pro = req.body.username;
@@ -131,6 +145,23 @@ userRoutes.route('/updateorder').put(function(req, res) {
             console.log("not updated");
         } else {
             res.json(products);
+        }
+    })
+});
+
+//Rate orders in products db
+userRoutes.route('/rateorderdb').put(function(req, res) {
+    let vendorname1 = req.body.vendorname;
+    let productname1 = req.body.productname;
+    let ratsum = req.body.ratingsum;
+    let ratnum = req.body.ratingnumber;
+    let rat = req.body.rating;
+    console.log(rat);
+    Product.updateOne({username: `${vendorname1}`,name: `${productname1}`},{ratingsum: `${ratsum}`,ratingnumber: `${ratnum}`,rating: `${rat}`},function(err,orders){
+        if (err) {
+            console.log("not updated");
+        } else {
+            res.json(orders);
         }
     })
 });

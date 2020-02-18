@@ -27,7 +27,7 @@ export default class EditProductList extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        if(this.state.count + this.state.quantity - this.state.searchvalue <=0){
+        if(this.state.count - this.state.searchvalue <=0){
             this.state.status = 'Ready'
         }
 

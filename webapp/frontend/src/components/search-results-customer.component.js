@@ -51,7 +51,7 @@ export default class ProdList extends Component {
                             <th>Quantity</th>
                             <th>Quantity Left to order</th>
                             <th>Status of Product</th>
-                            <th>Order now</th>
+                            <th>Rating</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +65,7 @@ export default class ProdList extends Component {
                                     <td>{currentUser.quantity}</td>
                                     <td>{currentUser.count}</td>
                                     <td>{currentUser.status}</td>
+                                    <td>{currentUser.rating}</td>
                                     <td><button type="button" onClick={() => this.orderProduct(currentUser.username,currentUser.quantity,currentUser.count)}>Order</button></td>
                                 </tr>
                             )

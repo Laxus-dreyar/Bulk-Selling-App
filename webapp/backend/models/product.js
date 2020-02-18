@@ -18,6 +18,15 @@ let Product = new mongoose.Schema({
     },
     count: {
         type: Number
+    },
+    ratingsum: {
+        type: Number
+    },
+    ratingnumber: {
+        type: Number
+    },
+    rating: {
+        type: Number
     }
 });
 

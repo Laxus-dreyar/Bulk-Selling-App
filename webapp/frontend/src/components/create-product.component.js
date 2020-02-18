@@ -12,7 +12,9 @@ export default class CreateProduct extends Component {
             name: '',
             status: 'waiting',
             quantity:0,
-            count:0
+            count:0,
+            ratingsum:0,
+            ratingnumber:0
         }
 
         this.onChangePrice = this.onChangePrice.bind(this);
@@ -55,7 +57,10 @@ export default class CreateProduct extends Component {
             quantity: this.state.quantity,
             name: this.state.name,
             status: this.state.status,
-            count: this.state.quantity
+            count: this.state.quantity,
+            ratingsum: this.state.ratingsum,
+            ratingnumber: this.state.ratingnumber,
+            rating: 0
         }
         console.log(newUser.count);
         axios.post('http://localhost:4000/addproduct', newUser)
@@ -66,7 +71,9 @@ export default class CreateProduct extends Component {
             name: '',
             status: 'waiting',
             quantity:0,
-            count:0
+            count:0,
+            ratingsum:0,
+            ratingnumber:0
         });
         alert("Product added");
     }
