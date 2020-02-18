@@ -139,14 +139,31 @@ userRoutes.route('/updateorder').put(function(req, res) {
 userRoutes.route('/updateorderdb').put(function(req, res) {
     let vendorname1 = req.body.vendorname;
     let productname1 = req.body.productname;
-    let quantity = req.body.count;
+    let quantity1 = req.body.count;
     let status = req.body.status;
-    console.log(status);
-    Order.updateMany({vendorname: `${vendorname1}`,productname: `${productname1}`},{count: `${quantity}`,status: `${status}`},function(err,orders){
+    Order.updateMany({vendorname: `${vendorname1}`,productname: `${productname1}`},{count: `${quantity1}`,status: `${status}`},function(err,orders){
         if (err) {
             console.log("not updated");
         } else {
             res.json(orders);
+        }
+    })
+});
+
+//Update order in orders db via specific use
+userRoutes.route('/editorder').put(function(req, res) {
+    let vendorname = req.body.vendorname;
+    let productname1 = req.body.productname;
+    let quantity = req.body.count;
+    let status = req.body.status;
+    let quantity2 = req.body.quant;
+    let user = req.body.username;
+    let initia = req.body.inti
+    Order.updateOne({username: `${user}`,productname: `${productname1}`, quantity: `${initia}`},{count: `${quantity}`,status: `${status}`,quantity: `${quantity2}`},function(err,products){
+        if (err) {
+            console.log("not updated");
+        } else {
+            res.json(products);
         }
     })
 });

@@ -17,6 +17,7 @@ import WaitProductList from './components/waiting-product-list.component'
 import ReadyProductList from './components/ready-product-list.component'  
 import DispatchedProductList from './components/dispatched-product-list.component'
 import CanceledProductList from './components/canceled-product-list.component'
+import EditProductList from './components/editing.component'
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/login/customer/search-product/result" exact component={SearchProductResult}/>
         <Route path="/login/customer/search-product/result/order" exact component={OrderProduct}/>
         <Route path="/login/customer/products" exact component={OrderedProductList}/>
+		<Route path="/login/customer/products-edit" exact component={EditProductList}/>
         <Route path="/login/vendor/waitproducts" exact component={WaitProductList}/>
         <Route path="/login/vendor/readyproducts" exact component={ReadyProductList}/>
         <Route path="/login/vendor/dispatchedproducts" exact component={DispatchedProductList}/>
