@@ -37,6 +37,39 @@ export default class ProdList extends Component {
         });
     }
 
+    viewProductSrtPrc = () => {
+        let sortedProductsAsc;
+          sortedProductsAsc= this.state.products.sort((a,b)=>{
+             return parseInt(a.price)  - parseInt(b.price);
+          })
+
+          this.setState({
+              products:sortedProductsAsc
+          })
+    }
+
+    viewProductSrtQuan = () => {
+        let sortedProductsAsc;
+          sortedProductsAsc= this.state.products.sort((a,b)=>{
+             return parseInt(a.count)  - parseInt(b.count);
+          })
+
+          this.setState({
+              products:sortedProductsAsc
+          })
+    }
+
+    viewProductSrtRat = () => {
+        let sortedProductsAsc;
+          sortedProductsAsc= this.state.products.sort((a,b)=>{
+             return parseInt(a.vrating)  - parseInt(b.vrating);
+          })
+
+          this.setState({
+              products:sortedProductsAsc
+          })
+    }
+
     componentDidMount() {
         const newProduct = {
             username: '',
@@ -65,6 +98,15 @@ export default class ProdList extends Component {
                         </li>
                         <li className="navbar-item">
                             <button type="button" onClick={this.viewProduct}>View Products</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={this.viewProductSrtPrc}>Sort by Price</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={this.viewProductSrtQuan}>Sort by Items left</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={this.viewProductSrtRat}>Sort by Rating of customer</button>
                         </li>
                         </ul>
                     </div>
