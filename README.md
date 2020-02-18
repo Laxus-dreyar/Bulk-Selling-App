@@ -5,6 +5,7 @@ To run
   3)in a new terminal go to webapp/frontend
   4)npm start
 
+
 There will be two types of users - Vendors and Customers.
 There must be a registration and login feature for both users. During registration, there
 would be the option to select between customer and vendor type. (10 marks)
