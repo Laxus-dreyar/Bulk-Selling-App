@@ -15,6 +15,20 @@ export default class SearchProduct extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    searchProducts = () => {
+		this.props.history.push({
+			pathname:'/login/customer/search-product',
+			user: this.state.username
+		});
+	}
+  
+	viewProduct = () => {
+		this.props.history.push({
+			pathname:'/login/customer/products',
+			user: this.state.username
+		});
+    }
+
     onChangeSearchValue(event) {
         this.setState({ searchvalue: event.target.value });
     }
@@ -35,19 +49,39 @@ export default class SearchProduct extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Search: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.searchvalue}
-                               onChange={this.onChangeSearchValue}
-                               />
+                <div className="container">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="collapse navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.searchProducts}>Search Products</button>
+                        </li>
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.viewProduct}>View Products</button>
+                        </li>
+                        </ul>
                     </div>
-                    <div className="form-group">
-                        <input type="submit" value="Search Product" className="btn btn-primary"/>
+                    <div>
+                        {this.state.username}
                     </div>
-                </form>
+                    </nav>
+                    <br/>
+                </div>
+                <div>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label>Search: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.searchvalue}
+                                onChange={this.onChangeSearchValue}
+                                />
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Search Product" className="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

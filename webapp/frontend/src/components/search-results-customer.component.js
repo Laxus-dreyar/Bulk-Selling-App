@@ -12,6 +12,20 @@ export default class ProdList extends Component {
         }
     }
 
+    searchProducts = () => {
+		this.props.history.push({
+			pathname:'/login/customer/search-product',
+			user: this.state.username
+		});
+	}
+  
+	viewProduct = () => {
+		this.props.history.push({
+			pathname:'/login/customer/products',
+			user: this.state.username
+		});
+    }
+    
     orderProduct = (username,quantity1,count1) => {
         this.props.history.push({
             pathname:'/login/customer/search-product/result/order',
@@ -42,37 +56,57 @@ export default class ProdList extends Component {
     render() {
         return (
             <div>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Quantity Left to order</th>
-                            <th>Status of Product</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    { 
-                        this.state.products.map((currentUser, i) => {
-                            return (
-                                <tr>
-                                    <td>{currentUser.username}</td>
-                                    <td>{currentUser.name}</td>
-                                    <td>{currentUser.price}</td>
-                                    <td>{currentUser.quantity}</td>
-                                    <td>{currentUser.count}</td>
-                                    <td>{currentUser.status}</td>
-                                    <td>{currentUser.rating}</td>
-                                    <td><button type="button" onClick={() => this.orderProduct(currentUser.username,currentUser.quantity,currentUser.count)}>Order</button></td>
-                                </tr>
-                            )
-                        })
-                    }
-                    </tbody>
-                </table>
+                <div className="container">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="collapse navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.searchProducts}>Search Products</button>
+                        </li>
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.viewProduct}>View Products</button>
+                        </li>
+                        </ul>
+                    </div>
+                    <div>
+                        {this.state.username}
+                    </div>
+                    </nav>
+                    <br/>
+                </div>
+                <div>
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Quantity Left to order</th>
+                                <th>Status of Product</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        { 
+                            this.state.products.map((currentUser, i) => {
+                                return (
+                                    <tr>
+                                        <td>{currentUser.username}</td>
+                                        <td>{currentUser.name}</td>
+                                        <td>{currentUser.price}</td>
+                                        <td>{currentUser.quantity}</td>
+                                        <td>{currentUser.count}</td>
+                                        <td>{currentUser.status}</td>
+                                        <td>{currentUser.rating}</td>
+                                        <td><button type="button" onClick={() => this.orderProduct(currentUser.username,currentUser.quantity,currentUser.count)}>Order</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }

@@ -20,6 +20,20 @@ export default class OrderProduct extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    searchProducts = () => {
+		this.props.history.push({
+			pathname:'/login/customer/search-product',
+			user: this.state.username
+		});
+	}
+  
+	viewProduct = () => {
+		this.props.history.push({
+			pathname:'/login/customer/products',
+			user: this.state.username
+		});
+    }
+    
     onChangeSearchValue(event) {
         this.setState({ searchvalue: event.target.value });
     }
@@ -75,25 +89,45 @@ export default class OrderProduct extends Component {
     render() {
         return (
             <div>
-                <div>
-                    VENDORNAME: {this.state.vendorname}
+                <div className="container">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="collapse navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.searchProducts}>Search Products</button>
+                        </li>
+                        <li className="navbar-item">
+                            <button type="button" onClick={this.viewProduct}>View Products</button>
+                        </li>
+                        </ul>
+                    </div>
+                    <div>
+                        {this.state.username}
+                    </div>
+                    </nav>
+                    <br/>
                 </div>
                 <div>
-                    PRODUCTNAME: {this.state.productname}
+                    <div>
+                        VENDORNAME: {this.state.vendorname}
+                    </div>
+                    <div>
+                        PRODUCTNAME: {this.state.productname}
+                    </div>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label>Quantity: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.searchvalue}
+                                onChange={this.onChangeSearchValue}
+                                />
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Order Product" className="btn btn-primary"/>
+                        </div>
+                    </form>
                 </div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Quantity: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.searchvalue}
-                               onChange={this.onChangeSearchValue}
-                               />
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Order Product" className="btn btn-primary"/>
-                    </div>
-                </form>
             </div>
         )
     }
