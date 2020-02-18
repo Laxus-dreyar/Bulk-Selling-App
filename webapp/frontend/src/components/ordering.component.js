@@ -63,7 +63,7 @@ export default class OrderProduct extends Component {
         }
 
         console.log(upProduct.count);
-        console.log(upProduct.status)
+        console.log(upProduct.status);
         axios.post('http://localhost:4000/addorder', newOrder)
              .then(res => console.log(res.data));
         
@@ -81,8 +81,10 @@ export default class OrderProduct extends Component {
         });
 
 		this.props.history.push({
-			pathname:'/login/customer',
-			user: this.state.username
+			pathname:'/login/customer/vendors-rate',
+            user: this.state.username,
+            productname: this.state.productname,
+            vendorname: this.state.vendorname
 		});
     }
 

@@ -60,7 +60,10 @@ export default class CreateProduct extends Component {
             count: this.state.quantity,
             ratingsum: this.state.ratingsum,
             ratingnumber: this.state.ratingnumber,
-            rating: 0
+            rating: 0,
+            vratingsum: 0,
+            vratingnumber: 0,
+            vrating: 0,
         }
         console.log(newUser.count);
         axios.post('http://localhost:4000/addproduct', newUser)

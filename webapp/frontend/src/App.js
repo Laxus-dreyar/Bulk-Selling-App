@@ -19,6 +19,7 @@ import DispatchedProductList from './components/dispatched-product-list.componen
 import CanceledProductList from './components/canceled-product-list.component'
 import EditProductList from './components/editing.component'
 import RateProduct from './components/rating.component'
+import RateVendor from './components/vendor-rating.component'
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/login/customer/products" exact component={OrderedProductList}/>
 		    <Route path="/login/customer/products-edit" exact component={EditProductList}/>
         <Route path="/login/customer/products-rate" exact component={RateProduct}/>
+        <Route path="/login/customer/vendors-rate" exact component={RateVendor}/>
         <Route path="/login/vendor/waitproducts" exact component={WaitProductList}/>
         <Route path="/login/vendor/readyproducts" exact component={ReadyProductList}/>
         <Route path="/login/vendor/dispatchedproducts" exact component={DispatchedProductList}/>

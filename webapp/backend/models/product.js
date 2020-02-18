@@ -27,6 +27,15 @@ let Product = new mongoose.Schema({
     },
     rating: {
         type: Number
+    },
+    vratingsum: {
+        type: Number
+    },
+    vratingnumber: {
+        type: Number
+    },
+    vrating: {
+        type: Number
     }
 });
 
