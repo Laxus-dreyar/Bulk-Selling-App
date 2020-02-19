@@ -64,6 +64,7 @@ export default class CreateProduct extends Component {
             vratingsum: 0,
             vratingnumber: 0,
             vrating: 0,
+            review: ''
         }
         console.log(newUser.count);
         axios.post('http://localhost:4000/addproduct', newUser)

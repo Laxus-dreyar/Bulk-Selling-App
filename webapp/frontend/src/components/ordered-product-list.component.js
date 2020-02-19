@@ -43,8 +43,6 @@ export default class ProdList extends Component {
     }
 
     editProduct = (username,quantity1,count1,productname,status) => {
-        console.log(status);
-        console.log(count1);
         if(status === 'waiting'){ 
             this.props.history.push({
                 pathname:'/login/customer/products-edit',
@@ -60,15 +58,20 @@ export default class ProdList extends Component {
         }
     }
 
-    rateVendor = (username,quantity1,count1,productname) => {
-        this.props.history.push({
-            pathname:'/login/customer/products-rate',
-            user: this.state.username,
-            name: productname,
-            vendorname: username,
-            quantity: quantity1,
-            count: count1
-        });
+    rateVendor = (username,quantity1,count1,productname,status) => {
+        if(status === 'dispatched'){
+            this.props.history.push({
+                pathname:'/login/customer/products-rate',
+                user: this.state.username,
+                name: productname,
+                vendorname: username,
+                quantity: quantity1,
+                count: count1
+            });
+        }
+        else{
+            alert("product not yet dispatched");
+        }
     }
 
     render() {
@@ -114,7 +117,7 @@ export default class ProdList extends Component {
                                         <td>{currentUser.count}</td>
                                         <td>{currentUser.status}</td>
                                         <td><button type="button" onClick={() => this.editProduct(currentUser.vendorname,currentUser.quantity,currentUser.count,currentUser.productname,currentUser.status)}>Edit</button></td>
-                                        <td><button type="button" onClick={() => this.rateVendor(currentUser.vendorname,currentUser.quantity,currentUser.count,currentUser.productname)}>Rate</button></td>
+                                        <td><button type="button" onClick={() => this.rateVendor(currentUser.vendorname,currentUser.quantity,currentUser.count,currentUser.productname,currentUser.status)}>Rate</button></td>
                                     </tr>
                                 )
                             })

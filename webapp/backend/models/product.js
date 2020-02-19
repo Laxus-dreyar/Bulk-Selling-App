@@ -36,6 +36,9 @@ let Product = new mongoose.Schema({
     },
     vrating: {
         type: Number
+    },
+    review: {
+        type: String
     }
 });
 

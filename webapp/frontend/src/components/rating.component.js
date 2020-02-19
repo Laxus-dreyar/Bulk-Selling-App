@@ -14,9 +14,11 @@ export default class RateProduct extends Component {
             ratingsum: 10,
             ratingnumber: 5,
             rating: 5,
-            temp: ''
+            temp: '',
+            rew: 'not changed'
         }
 
+        this.onChangeTempValue = this.onChangeTempValue.bind(this);
         this.onChangeSearchValue = this.onChangeSearchValue.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -35,6 +37,10 @@ export default class RateProduct extends Component {
 		});
     }
     
+    onChangeTempValue(event) {
+        this.setState({ temp: event.target.value });
+    }
+
     onChangeSearchValue(event) {
         this.setState({ searchvalue: event.target.value });
     }
@@ -50,21 +56,25 @@ export default class RateProduct extends Component {
             ratingsum: this.state.ratingsum,
             ratingnumber: this.state.ratingnumber,
             rating: this.state.rating,
-            status: this.state.status
+            status: this.state.status,
+            rew: this.state.rew
         }
 
         axios.post('http://localhost:4000/login/customer/products-rating',newProduct)
              .then(response => {
+                 console.log(response.data);
                  this.setState({
                      ratingsum: response.data.ratingsum,
                      rating: response.data.rating,
-                     ratingnumber: response.data.ratingnumber
+                     ratingnumber: response.data.ratingnumber,
+                     rew: response.data.review
                     });
             
         
             console.log(this.state.ratingsum);
             console.log(this.state.rating);
             console.log(this.state.ratingnumber);
+            console.log(this.state.rew);
             this.setState({
                 ratingsum : Number(this.state.ratingsum) + Number(this.state.searchvalue)
             });
@@ -76,7 +86,11 @@ export default class RateProduct extends Component {
             this.setState({
                 rating : this.state.ratingsum/this.state.ratingnumber
             });
+            this.setState({
+                rew : this.state.rew + "     ,      " + this.state.temp
+            });
             console.log(this.state.rating);
+            console.log(this.state.rew);
             const newOrder = {
                 username: this.state.username,
                 vendorname: this.state.vendorname,
@@ -85,10 +99,12 @@ export default class RateProduct extends Component {
                 ratingsum: this.state.ratingsum,
                 ratingnumber: this.state.ratingnumber,
                 rating: this.state.rating,
-                status: this.state.status
+                status: this.state.status,
+                rew: this.state.rew
             }
             
             console.log(newOrder.rating);
+            console.log(newOrder.rew);
             axios.put('http://localhost:4000/rateorderdb',newOrder)
                 .then(res => console.log(res.data));
 
@@ -134,6 +150,14 @@ export default class RateProduct extends Component {
                         PRODUCTNAME: {this.state.productname}
                     </div>
                     <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label>Review: </label>
+                            <input type="text" 
+                                className="form-control" 
+                                value={this.state.temp}
+                                onChange={this.onChangeTempValue}
+                                />  
+                        </div>
                         <div className="form-group">
                             <label>Rating:</label>
                             <select type="text" value={this.state.searchvalue} onChange={this.onChangeSearchValue}>

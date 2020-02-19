@@ -130,9 +130,6 @@ export default class RateVendor extends Component {
                     <div>
                         VENDORNAME: {this.state.vendorname}
                     </div>
-                    <div>
-                        PRODUCTNAME: {this.state.productname}
-                    </div>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Rating:</label>

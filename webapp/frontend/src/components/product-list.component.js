@@ -113,6 +113,7 @@ export default class ProductList extends Component {
                                 <th>Status of Product</th>
                                 <th>Quantity Left to Order</th>
                                 <th>Rating</th>
+                                <th>Review</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,6 +128,7 @@ export default class ProductList extends Component {
                                         <td>{currentUser.status}</td>
                                         <td>{currentUser.count}</td>
                                         <td>{currentUser.rating}</td>
+                                        <td>{currentUser.review}</td>
                                     </tr>
                                 )
                             })

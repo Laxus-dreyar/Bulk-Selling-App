@@ -168,8 +168,9 @@ userRoutes.route('/rateorderdb').put(function(req, res) {
     let ratsum = req.body.ratingsum;
     let ratnum = req.body.ratingnumber;
     let rat = req.body.rating;
-    console.log(rat);
-    Product.updateOne({username: `${vendorname1}`,name: `${productname1}`},{ratingsum: `${ratsum}`,ratingnumber: `${ratnum}`,rating: `${rat}`},function(err,orders){
+    let rew = req.body.rew;
+    console.log(rew);
+    Product.updateOne({username: `${vendorname1}`,name: `${productname1}`},{ratingsum: `${ratsum}`,ratingnumber: `${ratnum}`,rating: `${rat}`,review: `${rew}`},function(err,orders){
         if (err) {
             console.log("not updated");
         } else {
