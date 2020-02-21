@@ -21,7 +21,11 @@ import EditProductList from './components/editing.component'
 import RateProduct from './components/rating.component'
 import RateVendor from './components/vendor-rating.component'
 
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+
 function App() {
+  
   return (
     <Router>
       <div className="container">
