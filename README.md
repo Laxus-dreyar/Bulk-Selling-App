@@ -1,4 +1,4 @@
-# WepApp
+# WeB-App
 To run 
   1)go to webapp/backend:
   
